@@ -4,7 +4,7 @@ A modern, responsive landing page for an SMM (Social Media Marketing) panel buil
 
 ## Live Demo
 
-[Deploy on Netlify](https://www.netlify.com/)
+[Deployed on Netlify](https://smm-panel-landing-page.netlify.app/)
 
 ## Features
 
