@@ -2,9 +2,9 @@
 
 A modern, responsive landing page for an SMM (Social Media Marketing) panel built with React and Vite. Designed for Bangladeshi businesses, creators, and agencies looking for fast, safe, and affordable social media growth services.
 
-## Live Demo
+## Live Link
 
-[Deploy on Netlify](https://www.netlify.com/)
+[Deployed on Netlify](https://smm-panel-landing-page.netlify.app/)
 
 ## Features
 
