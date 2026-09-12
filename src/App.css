@@ -118,7 +118,8 @@ ul {
 /* Hero Section */
 .hero {
   background: linear-gradient(180deg, #fff7ed 0%, #fed7aa 50%, #fdba74 100%);
-  padding: 40px 40px 60px;
+  padding: 40px 40px 120px;
+  min-height: 100vh;
   position: relative;
   overflow: hidden;
 }
@@ -1264,7 +1265,7 @@ ul {
   }
 
   .hero {
-    padding: 40px 24px 60px;
+    padding: 40px 24px 100px;
   }
 
   .hero h1 {
@@ -1389,7 +1390,7 @@ ul {
   }
 
   .hero {
-    padding: 24px 20px 48px;
+    padding: 24px 20px 80px;
   }
 
   .hero-content {
@@ -1609,7 +1610,7 @@ ul {
 /* Small Mobile */
 @media (max-width: 480px) {
   .hero {
-    padding: 20px 16px 40px;
+    padding: 20px 16px 60px;
   }
 
   .hero h1 {

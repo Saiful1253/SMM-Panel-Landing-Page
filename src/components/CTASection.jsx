@@ -17,7 +17,7 @@ export default function CTASection() {
           </div>
         </div>
         <div className="cta-image">
-          <img src="/people.png" alt="Grow with us" className="cta-img" />
+          <img src="/people.png" alt="Grow with us" className="cta-img" loading="lazy" decoding="async" />
         </div>
       </div>
     </section>

@@ -27,7 +27,7 @@ export default function Stats() {
       <div className="stats-grid">
         {stats.map((stat, index) => (
           <div key={index} className="stat-card">
-            <img src={stat.image} alt={stat.label} className="stat-icon" />
+            <img src={stat.image} alt={stat.label} className="stat-icon" loading="lazy" decoding="async" />
             <div className="stat-number">{stat.number}</div>
             <div className="stat-label">{stat.label}</div>
           </div>

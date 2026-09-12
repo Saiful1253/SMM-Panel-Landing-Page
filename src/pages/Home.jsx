@@ -45,7 +45,7 @@ export default function Home() {
           </div>
 
           <div className="hero-image">
-            <img src="/hero.png" alt="Hero" className="hero-img" />
+            <img src="/hero.png" alt="Hero" className="hero-img" fetchPriority="high" />
           </div>
         </div>
       </section>
@@ -91,7 +91,7 @@ export default function Home() {
 
         <div className="service-card">
           <div className="service-image">
-            <img src="/upper.jpg" alt="Facebook Marketing" className="service-image-img" />
+             <img src="/upper.jpg" alt="Facebook Marketing" className="service-image-img" loading="lazy" decoding="async" />
           </div>
           <div className="service-content">
             <h3 className="service-title">Facebook Marketing Services</h3>
