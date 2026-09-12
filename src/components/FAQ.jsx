@@ -81,9 +81,11 @@ export default function FAQ() {
             ))}
           </div>
         </ScrollReveal>
-        <div className="faq-right">
-          <div className="faq-image-placeholder">👩‍💼</div>
-        </div>
+        <ScrollReveal className="reveal" delay="reveal-delay-1">
+          <div className="faq-right">
+            <div className="faq-image-placeholder">👩‍💼</div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   )

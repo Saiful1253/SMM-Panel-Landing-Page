@@ -55,7 +55,7 @@ export default function Home() {
           </div>
 
           <div className="hero-image">
-            <img src="/hero.png" alt="Hero" className="hero-img" fetchPriority="high" />
+            <img src="/front-page.png" alt="Hero" className="hero-img" fetchPriority="high" />
           </div>
         </div>
       </section>
