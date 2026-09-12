@@ -1,48 +1,80 @@
-import { Link, useLocation } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 
 export default function Navbar() {
-  const location = useLocation()
-  const isActive = (path) => location.pathname === path ? 'active' : ''
+  const [activeSection, setActiveSection] = useState('home')
   const [menuOpen, setMenuOpen] = useState(false)
   const navbarRef = useRef(null)
+  const isScrollingProgrammatically = useRef(false)
+
+  const sections = [
+    { id: 'home', label: 'Home', href: '/' },
+    { id: 'services-section', label: 'Services', href: '#services-section' },
+    { id: 'growth-section', label: 'Blog', href: '#growth-section' },
+    { id: 'advantages-section', label: 'About Us', href: '#advantages-section' },
+    { id: 'faq-section', label: 'API', href: '#faq-section' },
+    { id: 'contact-section', label: 'Contact Us', href: '#contact-section' },
+  ]
 
   useEffect(() => {
-    if (location.pathname === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
-    setMenuOpen(false)
-  }, [location.pathname])
+    const handleScroll = () => {
+      if (isScrollingProgrammatically.current) return
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
-        setMenuOpen(false)
+      const scrollPosition = window.scrollY + 120
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i].id)
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i].id)
+          break
+        }
       }
     }
 
-    if (menuOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
-      document.addEventListener('touchstart', handleClickOutside)
-    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-      document.removeEventListener('touchstart', handleClickOutside)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const handleClick = (e, href, sectionId) => {
+    setActiveSection(sectionId)
+    setMenuOpen(false)
+
+    if (sectionId === 'home') {
+      e.preventDefault()
+      isScrollingProgrammatically.current = true
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      setTimeout(() => {
+        isScrollingProgrammatically.current = false
+      }, 800)
+    } else {
+      const target = document.getElementById(sectionId)
+      if (target) {
+        e.preventDefault()
+        isScrollingProgrammatically.current = true
+        target.scrollIntoView({ behavior: 'smooth' })
+        setTimeout(() => {
+          isScrollingProgrammatically.current = false
+        }, 800)
+      }
     }
-  }, [menuOpen])
+  }
 
   return (
     <nav className="navbar" ref={navbarRef}>
-      <Link to="/" className="logo" onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setMenuOpen(false); }}>LOGO</Link>
+      <a href="/" className="logo" onClick={(e) => handleClick(e, '/', 'home')}>LOGO</a>
 
       <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
-        <Link to="/" className={isActive('/')} onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setMenuOpen(false); }}>Home</Link>
-        <a href="#services-section" onClick={() => setMenuOpen(false)}>Services</a>
-        <a href="#growth-section" onClick={(e) => { e.preventDefault(); document.getElementById('growth-section').scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false); }}>Blog</a>
-        <a href="#advantages-section" onClick={(e) => { e.preventDefault(); document.getElementById('advantages-section').scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false); }}>About Us</a>
-        <a href="#faq-section" onClick={(e) => { e.preventDefault(); document.getElementById('faq-section').scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false); }}>API</a>
-        <a href="#contact-section" onClick={(e) => { e.preventDefault(); document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' }); setMenuOpen(false); }}>Contact Us</a>
+        {sections.map((section) => (
+          <a
+            key={section.id}
+            href={section.href}
+            className={activeSection === section.id ? 'active' : ''}
+            onClick={(e) => handleClick(e, section.href, section.id)}
+          >
+            {section.label}
+          </a>
+        ))}
       </div>
 
       <div className={`nav-buttons ${menuOpen ? 'mobile-visible' : ''}`}>

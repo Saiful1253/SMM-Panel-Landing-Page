@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ScrollReveal from '../components/ScrollReveal'
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0)
@@ -48,34 +49,38 @@ export default function FAQ() {
 
   return (
     <section className="faq-section" id="faq-section">
-      <div className="section-header">
-        <div className="section-label">FAQ</div>
-        <h2 className="section-title">Frequently Asked <span className="highlight">Questions</span></h2>
-        <p className="section-description">
-          Find clear and simple explanations to the most common questions about our services, payments, orders, and account management.
-        </p>
-      </div>
+      <ScrollReveal className="reveal">
+        <div className="section-header">
+          <div className="section-label">FAQ</div>
+          <h2 className="section-title">Frequently Asked <span className="highlight">Questions</span></h2>
+          <p className="section-description">
+            Find clear and simple explanations to the most common questions about our services, payments, orders, and account management.
+          </p>
+        </div>
+      </ScrollReveal>
 
       <div className="faq-grid">
-        <div className="faq-left">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className={`faq-item ${openIndex === index ? 'active' : ''}`}
-              onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-            >
-              <div className="faq-question">
-                <span>{faq.question}</span>
-                <span className="faq-arrow">{openIndex === index ? '▲' : '▼'}</span>
-              </div>
-              {openIndex === index && (
-                <div className="faq-answer">
-                  <p>{faq.answer}</p>
+        <ScrollReveal className="reveal" delay="reveal-delay-1">
+          <div className="faq-left">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className={`faq-item ${openIndex === index ? 'active' : ''}`}
+                onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
+              >
+                <div className="faq-question">
+                  <span>{faq.question}</span>
+                  <span className="faq-arrow">{openIndex === index ? '▲' : '▼'}</span>
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
+                {openIndex === index && (
+                  <div className="faq-answer">
+                    <p>{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
         <div className="faq-right">
           <div className="faq-image-placeholder">👩‍💼</div>
         </div>

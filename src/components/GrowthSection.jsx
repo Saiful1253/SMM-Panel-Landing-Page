@@ -1,3 +1,5 @@
+import ScrollReveal from '../components/ScrollReveal'
+
 export default function GrowthSection() {
   const timelines = [
     {
@@ -36,32 +38,36 @@ export default function GrowthSection() {
 
   return (
     <section className="growth-section" id="growth-section">
-      <div className="section-header">
-        <div className="section-label">GROWTH</div>
-        <h2 className="section-title">
-          Growing on Social Media in <span className="highlight">Bangladesh</span>
-        </h2>
-        <p className="section-description">
-          The smartest way to grow is by combining SMM support with real content. You use SMM at the beginning for momentum, then let organic growth take over.
-        </p>
-      </div>
+      <ScrollReveal className="reveal">
+        <div className="section-header">
+          <div className="section-label">GROWTH</div>
+          <h2 className="section-title">
+            Growing on Social Media in <span className="highlight">Bangladesh</span>
+          </h2>
+          <p className="section-description">
+            The smartest way to grow is by combining SMM support with real content. You use SMM at the beginning for momentum, then let organic growth take over.
+          </p>
+        </div>
+      </ScrollReveal>
 
       <div className="timeline-grid">
         {timelines.map((timeline, index) => (
-          <div key={index} className="timeline-card">
-            <div className="timeline-header">{timeline.period}</div>
-            <div className="timeline-steps">
-              {timeline.steps.map((step, stepIndex) => (
-                <div key={stepIndex} className="timeline-step">
-                  <div className="step-indicator">{stepIndex + 1}</div>
-                  <div className="step-content">
-                    <h4>{step.title}</h4>
-                    <p>{step.desc}</p>
+          <ScrollReveal key={index} className="reveal" delay={`reveal-delay-${index + 1}`}>
+            <div className="timeline-card">
+              <div className="timeline-header">{timeline.period}</div>
+              <div className="timeline-steps">
+                {timeline.steps.map((step, stepIndex) => (
+                  <div key={stepIndex} className="timeline-step">
+                    <div className="step-indicator">{stepIndex + 1}</div>
+                    <div className="step-content">
+                      <h4>{step.title}</h4>
+                      <p>{step.desc}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         ))}
       </div>
     </section>

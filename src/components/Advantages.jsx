@@ -1,3 +1,5 @@
+import ScrollReveal from '../components/ScrollReveal'
+
 export default function Advantages() {
   const advantages = [
     {
@@ -25,24 +27,28 @@ export default function Advantages() {
 
   return (
     <section className="advantages-section" id="advantages-section">
-      <div className="section-header">
-        <div className="section-label">ADVANTAGES</div>
-        <h2 className="section-title">
-          Advantages of using <span className="highlight">our panel services</span>
-        </h2>
-        <p className="section-description">
-          Find clear and simple explanations to the most common questions about our services, payments, orders, and account management.
-        </p>
-      </div>
+      <ScrollReveal className="reveal">
+        <div className="section-header">
+          <div className="section-label">ADVANTAGES</div>
+          <h2 className="section-title">
+            Advantages of using <span className="highlight">our panel services</span>
+          </h2>
+          <p className="section-description">
+            Find clear and simple explanations to the most common questions about our services, payments, orders, and account management.
+          </p>
+        </div>
+      </ScrollReveal>
 
       <div className="advantages-grid">
         {advantages.map((item, index) => (
-          <div key={index} className="advantage-card">
-            <div className="advantage-icon">{item.icon}</div>
-            <h3 className="advantage-title">{item.title}</h3>
-            <p className="advantage-desc">{item.desc}</p>
-            {item.link && <a href="#" className="advantage-link">{item.link}</a>}
-          </div>
+          <ScrollReveal key={index} className="reveal" delay={`reveal-delay-${index + 1}`}>
+            <div className="advantage-card">
+              <div className="advantage-icon">{item.icon}</div>
+              <h3 className="advantage-title">{item.title}</h3>
+              <p className="advantage-desc">{item.desc}</p>
+              {item.link && <a href="#" className="advantage-link">{item.link}</a>}
+            </div>
+          </ScrollReveal>
         ))}
       </div>
     </section>

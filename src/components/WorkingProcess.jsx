@@ -1,3 +1,5 @@
+import ScrollReveal from '../components/ScrollReveal'
+
 export default function WorkingProcess() {
   const steps = [
     {
@@ -24,31 +26,37 @@ export default function WorkingProcess() {
 
   return (
     <section className="working-process-section">
-      <div className="section-header">
-        <div className="section-label">WORKING PROCESS</div>
-        <h2 className="section-title">Grow Your <span className="highlight">Socials</span> in <span className="highlight">4</span> Simple Steps</h2>
-        <p className="section-description">
-          A simple and efficient process designed to deliver fast and reliable results. Just place your order, and our system will handle the rest to help grow your social media presence smoothly.
-        </p>
-      </div>
-
-      <div className="steps-container">
-        <div className="steps-circle">
-          <div className="circle-center">K</div>
+      <ScrollReveal className="reveal">
+        <div className="section-header">
+          <div className="section-label">WORKING PROCESS</div>
+          <h2 className="section-title">Grow Your <span className="highlight">Socials</span> in <span className="highlight">4</span> Simple Steps</h2>
+          <p className="section-description">
+            A simple and efficient process designed to deliver fast and reliable results. Just place your order, and our system will handle the rest to help grow your social media presence smoothly.
+          </p>
         </div>
+      </ScrollReveal>
 
-        <div className="steps-grid">
-          {steps.map((step, index) => (
-            <div key={index} className="step-card">
-              <div className="step-number">{step.num}</div>
-              <h3 className="step-title">{step.title}</h3>
-              <p className="step-desc">{step.desc}</p>
-              <div className="step-dots step-dots-top-left"></div>
-              <div className="step-dots step-dots-bottom-right"></div>
-            </div>
-          ))}
+      <ScrollReveal className="reveal" delay="reveal-delay-1">
+        <div className="steps-container">
+          <div className="steps-circle">
+            <div className="circle-center">K</div>
+          </div>
+
+          <div className="steps-grid">
+            {steps.map((step, index) => (
+              <ScrollReveal key={index} className="reveal" delay={`reveal-delay-${index + 1}`}>
+                <div className="step-card">
+                  <div className="step-number">{step.num}</div>
+                  <h3 className="step-title">{step.title}</h3>
+                  <p className="step-desc">{step.desc}</p>
+                  <div className="step-dots step-dots-top-left"></div>
+                  <div className="step-dots step-dots-bottom-right"></div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   )
 }

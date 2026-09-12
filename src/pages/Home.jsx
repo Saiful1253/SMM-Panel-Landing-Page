@@ -5,6 +5,7 @@ import GrowthSection from '../components/GrowthSection'
 import Advantages from '../components/Advantages'
 import FAQ from '../components/FAQ'
 import CTASection from '../components/CTASection'
+import ScrollReveal from '../components/ScrollReveal'
 
 export default function Home() {
   return (
@@ -13,35 +14,43 @@ export default function Home() {
       <section className="hero">
         <div className="hero-content">
           <div className="hero-text">
-            <div className="rating">
-              <span className="stars">★★★★★</span>
-              <span className="rating-text">Excellent 4.8 out of 5</span>
-            </div>
+            <ScrollReveal className="reveal">
+              <div className="rating">
+                <span className="stars">★★★★★</span>
+                <span className="rating-text">Excellent 4.8 out of 5</span>
+              </div>
+            </ScrollReveal>
 
-            <h1>
-              Best SMM Panel <br />
-              in Bangladesh - <span className="highlight">Fast</span>
-              <span className="highlight">,Safe</span> & <br />
-              Growth in Social Media.
-            </h1>
+            <ScrollReveal className="reveal" delay="reveal-delay-1">
+              <h1>
+                Best SMM Panel <br />
+                in Bangladesh - <span className="highlight">Fast</span>
+                <span className="highlight">,Safe</span> & <br />
+                Growth in Social Media.
+              </h1>
+            </ScrollReveal>
 
-            <p className="hero-description">
-              SMM is Bangladesh's most reliable & cheap SMM panel for real social media
-              growth. We built this platform for Bangladeshi businesses, creators, and agencies.
-              You get fast delivery, safe methods, and followers that actually stay. No fake bots.
-              No account risks. Just real results. Most panels chase big numbers. We focus on
-              keeping those numbers. You get retention guarantees, delivery control, and long-
-              term credibility.
-            </p>
+            <ScrollReveal className="reveal" delay="reveal-delay-2">
+              <p className="hero-description">
+                SMM is Bangladesh's most reliable & cheap SMM panel for real social media
+                growth. We built this platform for Bangladeshi businesses, creators, and agencies.
+                You get fast delivery, safe methods, and followers that actually stay. No fake bots.
+                No account risks. Just real results. Most panels chase big numbers. We focus on
+                keeping those numbers. You get retention guarantees, delivery control, and long-
+                term credibility.
+              </p>
+            </ScrollReveal>
 
-            <div className="hero-buttons">
-              <button className="btn btn-outline" onClick={() => document.getElementById('services-section').scrollIntoView({ behavior: 'smooth' })}>
-                View Services
-              </button>
-              <button className="btn btn-primary">
-                Create an Account
-              </button>
-            </div>
+            <ScrollReveal className="reveal" delay="reveal-delay-3">
+              <div className="hero-buttons">
+                <button className="btn btn-outline" onClick={() => document.getElementById('services-section').scrollIntoView({ behavior: 'smooth' })}>
+                  View Services
+                </button>
+                <button className="btn btn-primary">
+                  Create an Account
+                </button>
+              </div>
+            </ScrollReveal>
           </div>
 
           <div className="hero-image">
