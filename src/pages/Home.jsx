@@ -4,6 +4,7 @@ import PaymentMethods from '../components/PaymentMethods'
 import GrowthSection from '../components/GrowthSection'
 import Advantages from '../components/Advantages'
 import FAQ from '../components/FAQ'
+import Testimonials from '../components/Testimonials'
 import CTASection from '../components/CTASection'
 import ScrollReveal from '../components/ScrollReveal'
 
@@ -145,6 +146,9 @@ export default function Home() {
 
       {/* FAQ Section */}
       <FAQ />
+
+      {/* Testimonials Section */}
+      <Testimonials />
 
       {/* CTA Section */}
       <CTASection />
