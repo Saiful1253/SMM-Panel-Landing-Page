@@ -4,7 +4,6 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home')
   const [menuOpen, setMenuOpen] = useState(false)
   const navbarRef = useRef(null)
-  const isScrollingProgrammatically = useRef(false)
 
   const sections = [
     { id: 'home', label: 'Home', href: '/' },
@@ -16,24 +15,29 @@ export default function Navbar() {
   ]
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (isScrollingProgrammatically.current) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries.filter((entry) => entry.isIntersecting)
 
-      const scrollPosition = window.scrollY + 120
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i].id)
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i].id)
-          break
+        if (visibleEntries.length > 0) {
+          const mostVisible = visibleEntries.reduce((a, b) =>
+            a.intersectionRatio > b.intersectionRatio ? a : b
+          )
+          setActiveSection(mostVisible.target.id)
         }
+      },
+      {
+        rootMargin: '-120px 0px -40% 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1],
       }
-    }
+    )
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
+    sections.forEach((section) => {
+      const el = document.getElementById(section.id)
+      if (el) observer.observe(el)
+    })
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => observer.disconnect()
   }, [])
 
   const handleClick = (e, href, sectionId) => {
@@ -42,20 +46,12 @@ export default function Navbar() {
 
     if (sectionId === 'home') {
       e.preventDefault()
-      isScrollingProgrammatically.current = true
       window.scrollTo({ top: 0, behavior: 'smooth' })
-      setTimeout(() => {
-        isScrollingProgrammatically.current = false
-      }, 800)
     } else {
       const target = document.getElementById(sectionId)
       if (target) {
         e.preventDefault()
-        isScrollingProgrammatically.current = true
-        target.scrollIntoView({ behavior: 'smooth' })
-        setTimeout(() => {
-          isScrollingProgrammatically.current = false
-        }, 800)
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
     }
   }

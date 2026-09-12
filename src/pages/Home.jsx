@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="hero">
+      <section className="hero" id="home">
         <div className="hero-content">
           <div className="hero-text">
             <ScrollReveal className="reveal">
