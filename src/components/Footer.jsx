@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import ContactForm from './ContactForm'
 
 export default function Footer() {
   return (
@@ -58,10 +59,11 @@ export default function Footer() {
         <div className="footer-links-group">
           <h4>Contact Info</h4>
           <div className="contact-info">
-            <p><span className="contact-icon email-icon">✉️</span> info@smmsun.com</p>
+            <p><span className="contact-icon email-icon">✉️</span> tanvinislam3273@gmail.com</p>
             <p><span className="contact-icon phone-icon">📞</span> +1 833 252 275</p>
             <p><span className="contact-icon support-icon">🎧</span> Serving all of Bangladesh<br />Support: 24/7</p>
           </div>
+          <ContactForm />
         </div>
       </div>
 

@@ -10,6 +10,7 @@ import PlausibleAnalytics from './components/PlausibleAnalytics'
 import AnalyticsTracker from './components/AnalyticsTracker'
 import AuthModal from './components/AuthModal'
 import { ModalProvider, useModal } from './context/ModalContext'
+import { ThemeProvider } from './context/ThemeContext'
 
 function AppContent() {
   const { authModal, closeAuthModal } = useModal()
@@ -36,8 +37,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <ModalProvider>
-      <AppContent />
-    </ModalProvider>
+    <ThemeProvider>
+      <ModalProvider>
+        <AppContent />
+      </ModalProvider>
+    </ThemeProvider>
   )
 }

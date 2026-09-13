@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useModal } from '../context/ModalContext'
+import ThemeToggle from './ThemeToggle'
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home')
@@ -61,39 +62,52 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="navbar" ref={navbarRef} aria-label="Primary navigation" id={navId}>
-      <a href="/" className="logo" onClick={(e) => handleClick(e, '/', 'home')} aria-current={activeSection === 'home' ? 'page' : undefined}>LOGO</a>
+    <>
+      <nav className="navbar" ref={navbarRef} aria-label="Primary navigation" id={navId}>
+        <a href="/" className="logo" onClick={(e) => handleClick(e, '/', 'home')} aria-current={activeSection === 'home' ? 'page' : undefined}>LOGO</a>
 
-      <div className={`nav-links ${menuOpen ? 'open' : ''}`} id="nav-links-container">
-        {sections.map((section) => (
-          <a
-            key={section.id}
-            href={section.href}
-            className={activeSection === section.id ? 'active' : ''}
-            aria-current={activeSection === section.id ? 'page' : undefined}
-            onClick={(e) => handleClick(e, section.href, section.id)}
-          >
-            {section.label}
-          </a>
-        ))}
-      </div>
+        <div className={`nav-menu ${menuOpen ? 'open' : ''}`}>
+          <div className="nav-links" id="nav-links-container">
+            {sections.map((section) => (
+              <a
+                key={section.id}
+                href={section.href}
+                className={activeSection === section.id ? 'active' : ''}
+                aria-current={activeSection === section.id ? 'page' : undefined}
+                onClick={(e) => handleClick(e, section.href, section.id)}
+              >
+                {section.label}
+              </a>
+            ))}
+          </div>
 
-      <div className={`nav-buttons ${menuOpen ? 'mobile-visible' : ''}`}>
-        <button className="btn btn-outline" onClick={() => { setMenuOpen(false); openAuthModal('signin') }}>Sign In</button>
-        <button className="btn btn-primary" onClick={() => { setMenuOpen(false); openAuthModal('signup') }}>Sign Up</button>
-      </div>
+          <div className="nav-buttons">
+            <ThemeToggle />
+            <button className="btn btn-outline" onClick={() => { setMenuOpen(false); openAuthModal('signin') }}>Sign In</button>
+            <button className="btn btn-primary" onClick={() => { setMenuOpen(false); openAuthModal('signup') }}>Sign Up</button>
+          </div>
+        </div>
 
-      <button
-        className="hamburger"
-        aria-label="Toggle menu"
-        aria-expanded={menuOpen}
-        aria-controls="nav-links-container"
-        onClick={() => setMenuOpen(prev => !prev)}
-      >
-        <span className={`hamburger-line ${menuOpen ? 'open' : ''}`}></span>
-        <span className={`hamburger-line ${menuOpen ? 'open' : ''}`}></span>
-        <span className={`hamburger-line ${menuOpen ? 'open' : ''}`}></span>
-      </button>
-    </nav>
+        <button
+          className="hamburger"
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="nav-links-container"
+          onClick={() => setMenuOpen(prev => !prev)}
+        >
+          <span className={`hamburger-line ${menuOpen ? 'open' : ''}`}></span>
+          <span className={`hamburger-line ${menuOpen ? 'open' : ''}`}></span>
+          <span className={`hamburger-line ${menuOpen ? 'open' : ''}`}></span>
+        </button>
+      </nav>
+
+      {menuOpen && (
+        <div
+          className="menu-backdrop"
+          onClick={() => setMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+    </>
   )
 }

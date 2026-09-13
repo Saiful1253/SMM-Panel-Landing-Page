@@ -1,4 +1,5 @@
 import ScrollReveal from '../components/ScrollReveal'
+import AnimatedCounter from '../components/AnimatedCounter'
 
 const stats = [
   {
@@ -32,7 +33,9 @@ export default function Stats() {
             <ScrollReveal key={index} className="reveal-scale" delay={`reveal-delay-${index + 1}`}>
               <div className="stat-card">
                 <img src={stat.image} alt={stat.label} className="stat-icon" loading="lazy" decoding="async" />
-                <div className="stat-number">{stat.number}</div>
+                <div className="stat-number">
+                  <AnimatedCounter>{stat.number}</AnimatedCounter>
+                </div>
                 <div className="stat-label">{stat.label}</div>
               </div>
             </ScrollReveal>
