@@ -5,13 +5,23 @@ import Footer from './components/Footer'
 import Loading from './components/Loading'
 import FloatingChat from './components/FloatingChat'
 import BackToTop from './components/BackToTop'
+import Analytics from './components/Analytics'
+import PlausibleAnalytics from './components/PlausibleAnalytics'
+import AnalyticsTracker from './components/AnalyticsTracker'
+import AuthModal from './components/AuthModal'
+import { ModalProvider, useModal } from './context/ModalContext'
 
-export default function App() {
+function AppContent() {
+  const { authModal, closeAuthModal } = useModal()
+
   return (
     <div className="app">
+      <Analytics />
+      <PlausibleAnalytics />
       <Loading />
+      <AnalyticsTracker />
       <Navbar />
-      <main>
+      <main id="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
@@ -19,6 +29,15 @@ export default function App() {
       <Footer />
       <FloatingChat />
       <BackToTop />
+      <AuthModal isOpen={authModal.isOpen} onClose={closeAuthModal} initialMode={authModal.mode} />
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <ModalProvider>
+      <AppContent />
+    </ModalProvider>
   )
 }

@@ -13,9 +13,10 @@ export default function Loading() {
   if (hidden) return null
 
   return (
-    <div className={`loading-screen ${hidden ? 'hidden' : ''}`}>
-      <div className="loader"></div>
+    <div className={`loading-screen ${hidden ? 'hidden' : ''}`} role="status" aria-live="polite" aria-busy="true">
+      <div className="loader" aria-hidden="true"></div>
       <div className="loader-text">LOADING</div>
+      <span className="sr-only">Loading, please wait</span>
     </div>
   )
 }

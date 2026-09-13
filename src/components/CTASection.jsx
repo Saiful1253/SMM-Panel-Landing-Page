@@ -1,6 +1,9 @@
 import ScrollReveal from '../components/ScrollReveal'
+import { useModal } from '../context/ModalContext'
 
 export default function CTASection() {
+  const { openAuthModal } = useModal()
+
   return (
     <section className="cta-section">
       <div className="cta-map-bg">🌍</div>
@@ -15,8 +18,12 @@ export default function CTASection() {
               Join over 68,000 users who are already using SMM to grow faster on Facebook, Instagram, YouTube, TikTok, and more. Getting started is free and takes less than 60 seconds.
             </p>
             <div className="cta-buttons">
-              <button className="btn btn-outline">See All Services</button>
-              <button className="btn btn-primary">Create Free Account</button>
+              <button className="btn btn-outline" onClick={() => document.getElementById('services-section').scrollIntoView({ behavior: 'smooth' })}>
+                See All Services
+              </button>
+              <button className="btn btn-primary" onClick={() => openAuthModal('signup')}>
+                Create Free Account
+              </button>
             </div>
           </div>
         </ScrollReveal>

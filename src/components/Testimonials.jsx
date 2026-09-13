@@ -63,17 +63,17 @@ export default function Testimonials() {
       <div className="testimonials-grid">
         {testimonials.map((testimonial, index) => (
           <ScrollReveal key={index} className="reveal" delay={`reveal-delay-${index % 3 + 1}`}>
-            <div className="testimonial-card">
+            <article className="testimonial-card">
               <div className="testimonial-header">
-                <div className="testimonial-avatar">{testimonial.avatar}</div>
+                <div className="testimonial-avatar" aria-hidden="true">{testimonial.avatar}</div>
                 <div className="testimonial-info">
                   <div className="testimonial-name">{testimonial.name}</div>
                   <div className="testimonial-role">{testimonial.role}</div>
                 </div>
               </div>
-              <div className="testimonial-rating">{testimonial.rating}</div>
+              <div className="testimonial-rating" aria-label={`${testimonial.rating} rating`}>{testimonial.rating}</div>
               <p className="testimonial-text">{testimonial.text}</p>
-            </div>
+            </article>
           </ScrollReveal>
         ))}
       </div>

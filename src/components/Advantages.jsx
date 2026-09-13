@@ -42,12 +42,12 @@ export default function Advantages() {
       <div className="advantages-grid">
         {advantages.map((item, index) => (
           <ScrollReveal key={index} className="reveal" delay={`reveal-delay-${index + 1}`}>
-            <div className="advantage-card">
-              <div className="advantage-icon">{item.icon}</div>
+            <article className="advantage-card">
+              <div className="advantage-icon" aria-hidden="true">{item.icon}</div>
               <h3 className="advantage-title">{item.title}</h3>
               <p className="advantage-desc">{item.desc}</p>
               {item.link && <a href="#" className="advantage-link">{item.link}</a>}
-            </div>
+            </article>
           </ScrollReveal>
         ))}
       </div>

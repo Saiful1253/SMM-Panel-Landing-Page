@@ -47,6 +47,17 @@ export default function FAQ() {
     },
   ]
 
+  const handleToggle = (index) => {
+    setOpenIndex(openIndex === index ? -1 : index)
+  }
+
+  const handleKeyDown = (e, index) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      handleToggle(index)
+    }
+  }
+
   return (
     <section className="faq-section" id="faq-section">
       <ScrollReveal className="reveal">
@@ -62,28 +73,37 @@ export default function FAQ() {
       <div className="faq-grid">
         <ScrollReveal className="reveal" delay="reveal-delay-1">
           <div className="faq-left">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className={`faq-item ${openIndex === index ? 'active' : ''}`}
-                onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
-              >
-                <div className="faq-question">
-                  <span>{faq.question}</span>
-                  <span className="faq-arrow">{openIndex === index ? '▲' : '▼'}</span>
-                </div>
-                {openIndex === index && (
-                  <div className="faq-answer">
-                    <p>{faq.answer}</p>
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index
+              return (
+                <div
+                  key={index}
+                  className={`faq-item ${isOpen ? 'active' : ''}`}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${index}`}
+                  id={`faq-question-${index}`}
+                  onClick={() => handleToggle(index)}
+                  onKeyDown={(e) => handleKeyDown(e, index)}
+                >
+                  <div className="faq-question">
+                    <span>{faq.question}</span>
+                    <span className="faq-arrow" aria-hidden="true">{isOpen ? '▲' : '▼'}</span>
                   </div>
-                )}
-              </div>
-            ))}
+                  {isOpen && (
+                    <div className="faq-answer" id={`faq-answer-${index}`} aria-labelledby={`faq-question-${index}`}>
+                      <p>{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
         </ScrollReveal>
         <ScrollReveal className="reveal" delay="reveal-delay-1">
           <div className="faq-right">
-            <div className="faq-image-placeholder">👩‍💼</div>
+            <div className="faq-image-placeholder" aria-hidden="true">👩‍💼</div>
           </div>
         </ScrollReveal>
       </div>
